@@ -1,0 +1,305 @@
+﻿<!--Amodel List<WebSiteBanHang.Context.Product>-->
+@using PagedList;
+@using PagedList.Mvc;
+
+@model WebSiteBanHang.Models.HomeModel
+
+<!--model PagedList<WebSiteBanHang.Context.Product>-->
+
+
+@{
+    ViewBag.Title = "ProductCategory";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Content/css/LayoutSite.css" rel="stylesheet" />
+<link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'>
+<!-- ========================= SECTION CONTENT ========================= -->
+<section class="section-content padding-y">
+    <div class="container">
+
+
+        <!-- ============================  FILTER TOP  ================================= -->
+        <!--<div class="card mb-3">
+            <div class="card-body">
+                <ol class="breadcrumb float-left">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item"><a href="#">Category name</a></li>
+                    <li class="breadcrumb-item active">Item details</li>
+                </ol>
+            </div>--> <!-- card-body .// -->
+        <!--</div>--> <!-- card.// -->
+        <!-- ============================ FILTER TOP END.// ================================= -->
+
+
+        <div class="row">
+            <aside class="col-md-2">
+
+                <article class="filter-group">
+                    <h6 class="title">
+                        <a href="#" class="dropdown-toggle" data-toggle="collapse" data-target="#collapse_1"> Loại Sản phẩm </a>
+                    </h6>
+                    <div class="filter-content collapse show" id="collapse_1">
+                        <div class="inner">
+                            <ul class="list-menu">
+                                @foreach (var item in Model.ListCategory)
+                                {
+                                    <li>@Html.ActionLink(item.Name, "ProductCategory", "Category", new { @Id = item.Id }, null)</li>
+                                }
+
+
+                            </ul>
+                        </div> <!-- inner.// -->
+                    </div>
+                </article> <!-- filter-group  .// -->
+                <article class="filter-group">
+                    <h6 class="title">
+                        <a href="#" class="dropdown-toggle" data-toggle="collapse" data-target="#collapse_2"> Thương hiệu </a>
+                    </h6>
+                    <div class="filter-content collapse show" id="collapse_2">
+                        <div class="inner">
+                            @foreach (var item in Model.ListBrand)
+                            {
+                                <label class="custom-control custom-checkbox">
+                                    <input type="checkbox" checked="" class="custom-control-input">
+                                    <div class="custom-control-label">
+                                        @Html.ActionLink(item.Name, "ProductBrand", "Brand", new { @Id = item.Id }, null)
+                                        <b class="badge badge-pill badge-light float-right">120</b>
+                                    </div>
+                                </label>
+                            }
+
+
+                        </div> <!-- inner.// -->
+                    </div>
+                </article> <!-- filter-group .// -->
+                <article class="filter-group">
+                    <h6 class="title">
+                        <a href="#" class="dropdown-toggle" data-toggle="collapse" data-target="#collapse_3"> Phạm vi giá </a>
+                    </h6>
+                    <div class="filter-content collapse show" id="collapse_3">
+                        <div class="inner">
+                            <input type="range" class="custom-range" min="0" max="100" name="">
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label>Thấp nhất </label>
+                                    <input class="form-control" placeholder="$0" type="number">
+                                </div>
+                                <div class="form-group text-right col-md-6">
+                                    <label>Lớn nhất</label>
+                                    <input class="form-control" placeholder="$1,0000" type="number">
+                                </div>
+                            </div> <!-- form-row.// -->
+                            <button class="btn btn-block btn-primary">Áp dụng</button>
+                        </div> <!-- inner.// -->
+                    </div>
+                </article> <!-- filter-group .// -->
+                <article class="filter-group">
+                    <h6 class="title">
+                        <a href="#" class="dropdown-toggle" data-toggle="collapse" data-target="#collapse_4"> Kích cỡ </a>
+                    </h6>
+                    <div class="filter-content collapse show" id="collapse_4">
+                        <div class="inner">
+                            <label class="checkbox-btn">
+                                <input type="checkbox">
+                                <span class="btn btn-light"> XS </span>
+                            </label>
+
+                            <label class="checkbox-btn">
+                                <input type="checkbox">
+                                <span class="btn btn-light"> SM </span>
+                            </label>
+
+                            <label class="checkbox-btn">
+                                <input type="checkbox">
+                                <span class="btn btn-light"> LG </span>
+                            </label>
+
+                            <label class="checkbox-btn">
+                                <input type="checkbox">
+                                <span class="btn btn-light"> XXL </span>
+                            </label>
+                        </div> <!-- inner.// -->
+                    </div>
+                </article> <!-- filter-group .// -->
+                <article class="filter-group">
+                    <h6 class="title">
+                        <a href="#" class="dropdown-toggle" data-toggle="collapse" data-target="#collapse_5"> Điều kiện </a>
+                    </h6>
+                    <div class="filter-content collapse show" id="collapse_5">
+                        <div class="inner">
+                            <label class="custom-control custom-radio">
+                                <input type="radio" name="myfilter_radio" checked="" class="custom-control-input">
+                                <div class="custom-control-label">Bất kỳ điều kiện nào</div>
+                            </label>
+
+                            <label class="custom-control custom-radio">
+                                <input type="radio" name="myfilter_radio" class="custom-control-input">
+                                <div class="custom-control-label">Tại thương hiệu mới </div>
+                            </label>
+
+                            <label class="custom-control custom-radio">
+                                <input type="radio" name="myfilter_radio" class="custom-control-input">
+                                <div class="custom-control-label">Các mặt hàng đã qua sử dụng</div>
+                            </label>
+
+                            <label class="custom-control custom-radio">
+                                <input type="radio" name="myfilter_radio" class="custom-control-input">
+                                <div class="custom-control-label">cũ</div>
+                            </label>
+                        </div> <!-- inner.// -->
+                    </div>
+                </article> <!-- filter-group .// -->
+
+            </aside> <!-- col.// -->
+            <main class="col-md-10">
+
+
+                <header class="mb-3">
+                    <div class="form-inline">
+                        <strong class="mr-md-auto">@Model.lstProduct.Count() sản phẩm </strong>
+                        <select class="mr-2 form-control">
+                            @*<option>Latest items</option>
+                            <option>Trending</option>
+                            <option>Most Popular</option>*@
+                            @*<option>Cheapest</option>*@
+                        </select>
+                        <div class="btn-group">
+                            <a href="page-listing-grid.html" class="btn btn-light" data-toggle="tooltip" title="List view">
+                                <i class="fa fa-bars"></i>
+                            </a>
+                            <a href="page-listing-large.html" class="btn btn-light active" data-toggle="tooltip" title="Grid view">
+                                <i class="fa fa-th"></i>
+                            </a>
+                        </div>
+                    </div>
+                </header><!-- sect-heading -->
+
+                @foreach (var item in Model.lstProduct)
+                {
+                    var  urlDetail = "san-pham/" + "/" + item.Slug + "/" + item.Id;
+                    <article class="card card-product-list">
+                        <div class="row no-gutters">
+                            <aside class="col-md-3">
+                                <a href="@Url.Action("Detail","Product", new { Id= item.Id} )" class="img-wrap">
+                                    <span class="badge badge-danger"> Mới </span>
+                                    <img src="~/Content/images/items/@item.Avatar">
+                                </a>
+                            </aside> <!-- col.// -->
+                            <div class="col-md-6">
+                                <div class="info-main">
+                                    <a href="@Url.Action("Detail","Product", new { Id= item.Id} )" class="h5 title">@item.Name</a>
+                                    <div class="rating-wrap mb-2">
+                                        <ul class="rating-stars">
+                                            <li style="width:100%" class="stars-active">
+                                                <i class="fa fa-star"></i> <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i> <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                            </li>
+                                            <li>
+                                                <i class="fa fa-star"></i> <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i> <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                            </li>
+                                        </ul>
+                                        <div class="label-rating">9/10</div>
+                                    </div> <!-- rating-wrap.// -->
+
+                                    <p class="mb-3">
+                                        <span class="tag"> <i class="fa fa-check"></i> Xác minh</span>
+                                        <span class="tag"> 5 năm </span>
+                                        <span class="tag"> 80 lượt xem </span>
+                                        <span class="tag"> VietNam </span>
+                                    </p>
+
+                                    <p>
+                                        @item.ShortDes
+                                    </p>
+
+                                </div> <!-- info-main.// -->
+                            </div> <!-- col.// -->
+                            <aside class="col-sm-3">
+                                <div class="info-aside">
+                                    <div class="price-wrap">
+                                        <span class="h5 price">@item.Price</span>
+                                        <small class="text-muted">mỗi mục </small>
+                                    </div> <!-- price-wrap.// -->
+                                    <small class="text-warning">Vận chuyển trả phí</small>
+
+                                    <p class="text-muted mt-3">Công ty Tnhh Dệt May Lớn</p>
+                                    <p class="mt-3">
+                                        <a href="#" class="btn btn-outline-primary"> <i class="fa fa-envelope"></i> Liên hệ với nhà cung cấp </a>
+                                        <a href="#" class="btn btn-light"><i class="fa fa-heart"></i> Lưu </a>
+                                    </p>
+
+                                    <label class="custom-control mt-3 custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input">
+                                        <div class="custom-control-label">
+                                            Thêm để so sánh
+                                        </div>
+                                    </label>
+
+                                </div> <!-- info-aside.// -->
+                            </aside> <!-- col.// -->
+                        </div> <!-- row.// -->
+                    </article> <!-- card-product .// -->
+                }
+
+                @*<nav class="mb-4" aria-label="Page navigation sample">
+                        <ul class="pagination">
+                            <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
+                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item"><a class="page-link" href="#">4</a></li>
+                            <li class="page-item"><a class="page-link" href="#">5</a></li>
+                            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                        </ul>
+                    </nav>*@
+                Trang @(Model.lstProduct.PageCount<Model.lstProduct.PageNumber? 0: Model.lstProduct.PageNumber) of @Model.lstProduct.PageCount
+            <nav>
+                @Html.PagedListPager(Model.lstProduct, page => Url.Action("ProductCategory",
+                       new { page, currentFilter = ViewBag.curentFilter }))
+            </nav>
+               
+
+
+
+                <div class="box text-center">
+                    <p>Bạn đã tìm thấy những gì bạn đang tìm kiếm?</p>
+                    <a href="#" class="btn btn-light">Có</a>
+                    <a href="#" class="btn btn-light">Không</a>
+                </div>
+
+
+            </main> <!-- col.// -->
+
+        </div>
+
+    </div> <!-- container .//  -->
+</section>
+<!-- ========================= SECTION CONTENT END// ========================= -->
+<!-- ========================= SECTION SUBSCRIBE  ========================= -->
+<section class="section-subscribe padding-y-lg">
+    <div class="container">
+
+        <p class="pb-2 text-center text-white">Cung cấp các xu hướng sản phẩm mới nhất và tin tức ngành công nghiệp trực tiếp đến hộp thư đến của bạn</p>
+
+        <div class="row justify-content-md-center">
+            <div class="col-lg-5 col-md-6">
+                <form class="form-row">
+                    <div class="col-md-8 col-7">
+                        <input class="form-control border-0" placeholder="Your Email" type="email">
+                    </div> <!-- col.// -->
+                    <div class="col-md-4 col-5">
+                        <button type="submit" class="btn btn-block btn-warning"> <i class="fa fa-envelope"></i> Đăng ký </button>
+                    </div> <!-- col.// -->
+                </form>
+                <small class="form-text text-white-50">Chúng tôi sẽ không bao giờ chia sẻ địa chỉ email của bạn với bên thứ ba. </small>
+            </div> <!-- col-md-6.// -->
+        </div>
+
+
+    </div>
+</section>
+
+<!-- ========================= SECTION SUBSCRIBE END// ========================= -->

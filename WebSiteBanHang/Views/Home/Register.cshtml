@@ -1,0 +1,79 @@
+﻿@model WebSiteBanHang.Context.User
+
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_Layout.cshtml"; // gọi layout
+}
+@ViewBag.error
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <div class="text-right">
+            <a href="~/Home/Index" class="btn btn-sm btn-infos btn-success my-2"><i class="fas fa-arrow-left"></i>Quay lại</a>
+        </div>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="card mx-auto" style="max-width:520px; margin-top:40px;">
+            <article class="card-body">
+                <header class="mb-4"><h4 class="card-title text-center">Đăng ký</h4></header>
+                <form>
+                    <div class="form-row">
+                        <div class="col form-group">
+                            <label>Họ</label>
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                            </div>
+                        </div> <!-- form-group end.// -->
+                        <div class="col form-group">
+                            <label>Tên</label>
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                            </div>
+                        </div> <!-- form-group end.// -->
+
+                    </div> <!-- form-row end.// -->
+                    <div class="col form-group">
+                        <label>Địa chỉ</label>
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                        </div>
+                    </div> <!-- form-group end.// -->
+                    <div class="form-group">
+                        <label>Tài khoản</label>
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                        </div>
+                        <p class="text-danger"> @ViewBag.error</p>
+                    </div> <!-- form-group end.// -->
+
+
+                    <div class="form-group">
+
+                        <label>Mật khẩu</label>
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                        </div>
+
+                    </div>
+                    <div class="form-group my-2">
+                        <button type="submit" name="submit" class="btn btn-primary btn-block"> Tạo Tài Khoản </button>
+                    </div> <!-- form-group// -->
+
+                </form>
+            </article><!-- card-body.// -->
+        </div> <!-- card .// -->
+        <p class="text-center mt-4">Bạn đã có tài khoản? <a href="">Đăng nhập</a></p>
+        <br><br>
+
+    </div>
+}
+
+
